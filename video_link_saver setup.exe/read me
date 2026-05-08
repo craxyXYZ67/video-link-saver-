@@ -1,0 +1,111 @@
+Video Link Saver — Setup Guide
+About
+
+Video Link Saver is a fully offline Windows desktop application that helps users save, organize, and search YouTube and Instagram video links locally on their PC.
+
+The application is:
+
+Free to use
+Open source
+Offline-only
+Privacy-focused
+Lightweight and secure
+
+All data is stored locally on your own device inside an Excel (.xlsx) file. No internet connection, cloud storage, tracking, or telemetry is used.
+
+System Requirements
+Windows 10 or Windows 11
+64-bit Windows recommended
+Minimum 4 GB RAM
+Around 200 MB free storage space
+Installation Instructions
+Step 1 — Run the Setup File
+
+Double-click:
+
+VideoLinkSaverSetup.exe
+
+If Windows SmartScreen appears:
+
+Click More Info
+Click Run Anyway
+
+This happens because the installer is not code-signed yet.
+
+Step 2 — Choose Installation Location
+
+The default installation location is:
+
+C:\Program Files\Video Link Saver
+
+You may change it if desired.
+
+Step 3 — Complete Installation
+
+Follow the installer steps and click:
+
+Next
+Install
+Finish
+
+You can optionally create:
+
+Desktop shortcut
+Start menu shortcut
+First Launch
+
+When the application launches for the first time:
+
+the required storage folder is created automatically,
+the Excel database file is generated automatically,
+dark/light theme settings are initialized.
+
+No setup or account creation is required.
+
+Data Storage Location
+
+Your saved video links are stored locally at:
+
+%LOCALAPPDATA%\VideoLinkSaver\the saves links.xlsx
+
+Usually:
+
+C:\Users\<YourName>\AppData\Local\VideoLinkSaver\the saves links.xlsx
+Important Notes
+Do not manually rename the Excel file while the app is running.
+You may create backups of the Excel file for safety.
+If the Excel file is deleted or corrupted, the app automatically recreates a new clean file.
+Privacy & Security
+
+Video Link Saver:
+
+never uploads data,
+never connects to online servers,
+never tracks users,
+never collects analytics,
+works completely offline.
+
+All saved information remains on your own computer.
+
+Uninstalling
+
+To uninstall:
+
+Open Windows Settings
+Go to Apps
+Find “Video Link Saver”
+Click Uninstall
+
+Your Excel data file may remain on your PC unless deleted manually.
+
+Open Source
+
+This project is open source and free to use for personal and educational purposes.
+
+Support
+
+If you encounter issues:
+
+rebuild the application using the source code,
+reinstall the setup,
+or restore your Excel backup file if needed.
