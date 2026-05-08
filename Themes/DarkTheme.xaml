@@ -1,0 +1,65 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- ================================================================
+         DARK THEME — Deep dark with neon/accent highlights
+         ================================================================ -->
+
+    <!-- Core colors -->
+    <Color x:Key="BackgroundColor">#0D0D1A</Color>
+    <Color x:Key="SurfaceColor">#1A1A2E</Color>
+    <Color x:Key="AccentColor">#7C6FFF</Color>
+    <Color x:Key="AccentHoverColor">#9B8FFF</Color>
+    <Color x:Key="AccentLightColor">#2D2A4A</Color>
+    <Color x:Key="TextPrimaryColor">#F1F5F9</Color>
+    <Color x:Key="TextSecondaryColor">#94A3B8</Color>
+    <Color x:Key="BorderColor">#2D2D4A</Color>
+    <Color x:Key="ErrorColor">#FF6B6B</Color>
+    <Color x:Key="SuccessColor">#34D399</Color>
+    <Color x:Key="CardBorderColor">#3D3760</Color>
+    <Color x:Key="ButtonSecondaryBg">#2D2A4A</Color>
+    <Color x:Key="InputBorderColor">#3D3D5C</Color>
+    <Color x:Key="InputFocusColor">#7C6FFF</Color>
+    <Color x:Key="TagYellow">#3D3000</Color>
+    <Color x:Key="TagYellowText">#FCD34D</Color>
+    <Color x:Key="TagPurple">#2D2A4A</Color>
+    <Color x:Key="TagPurpleText">#C4B5FD</Color>
+    <Color x:Key="TagGreen">#022C22</Color>
+    <Color x:Key="TagGreenText">#6EE7B7</Color>
+    <Color x:Key="TagBlue">#0F1F3D</Color>
+    <Color x:Key="TagBlueText">#93C5FD</Color>
+
+    <!-- Brushes -->
+    <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource BackgroundColor}"/>
+    <SolidColorBrush x:Key="SurfaceBrush" Color="{StaticResource SurfaceColor}"/>
+    <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}"/>
+    <SolidColorBrush x:Key="AccentHoverBrush" Color="{StaticResource AccentHoverColor}"/>
+    <SolidColorBrush x:Key="AccentLightBrush" Color="{StaticResource AccentLightColor}"/>
+    <SolidColorBrush x:Key="TextPrimaryBrush" Color="{StaticResource TextPrimaryColor}"/>
+    <SolidColorBrush x:Key="TextSecondaryBrush" Color="{StaticResource TextSecondaryColor}"/>
+    <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource BorderColor}"/>
+    <SolidColorBrush x:Key="ErrorBrush" Color="{StaticResource ErrorColor}"/>
+    <SolidColorBrush x:Key="SuccessBrush" Color="{StaticResource SuccessColor}"/>
+    <SolidColorBrush x:Key="CardBorderBrush" Color="{StaticResource CardBorderColor}"/>
+    <SolidColorBrush x:Key="ButtonSecondaryBgBrush" Color="{StaticResource ButtonSecondaryBg}"/>
+    <SolidColorBrush x:Key="InputBorderBrush" Color="{StaticResource InputBorderColor}"/>
+    <SolidColorBrush x:Key="InputFocusBrush" Color="{StaticResource InputFocusColor}"/>
+
+    <!-- Gradient for main background -->
+    <LinearGradientBrush x:Key="BackgroundGradientBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#0D0D1A" Offset="0"/>
+        <GradientStop Color="#16162A" Offset="0.5"/>
+        <GradientStop Color="#0D0D1A" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!-- Gradient for primary buttons -->
+    <LinearGradientBrush x:Key="AccentGradientBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#7C6FFF" Offset="0"/>
+        <GradientStop Color="#A78BFA" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!-- Theme toggle icon text -->
+    <System:String xmlns:System="clr-namespace:System;assembly=mscorlib"
+                   x:Key="ThemeToggleIcon">🌙</System:String>
+
+</ResourceDictionary>
