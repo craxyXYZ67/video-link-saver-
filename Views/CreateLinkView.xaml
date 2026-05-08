@@ -1,0 +1,141 @@
+<UserControl x:Class="VideoLinkSaver.Views.CreateLinkView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid Background="{DynamicResource BackgroundGradientBrush}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        Width="500"
+                        Margin="0,36,0,36">
+
+                <!-- Card -->
+                <Border Background="{DynamicResource SurfaceBrush}"
+                        BorderBrush="{DynamicResource CardBorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="20"
+                        Padding="40,36">
+                    <Border.Effect>
+                        <DropShadowEffect Color="#6C63FF" BlurRadius="30" ShadowDepth="0" Opacity="0.1"/>
+                    </Border.Effect>
+
+                    <StackPanel>
+                        <!-- Header row -->
+                        <Grid Margin="0,0,0,28">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Grid.Column="0"
+                                    Content="← Back"
+                                    Style="{StaticResource SecondaryButtonStyle}"
+                                    Command="{Binding BackCommand}"
+                                    Padding="14,8"
+                                    FontSize="13"
+                                    VerticalAlignment="Center"/>
+
+                            <TextBlock Grid.Column="1"
+                                       Text="Create the Link"
+                                       FontSize="22" FontWeight="Bold"
+                                       Foreground="{DynamicResource TextPrimaryBrush}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                        </Grid>
+
+                        <!-- Success notification -->
+                        <Border Background="#D1FAE5"
+                                CornerRadius="10"
+                                Padding="16,12"
+                                Margin="0,0,0,20"
+                                Visibility="{Binding ShowSuccess, Converter={StaticResource BoolToVisibility}}">
+                            <TextBlock Text="✅  Link saved successfully!"
+                                       Foreground="#065F46"
+                                       FontSize="14" FontWeight="SemiBold"
+                                       HorizontalAlignment="Center"/>
+                        </Border>
+
+                        <!-- 1. Link of the Video -->
+                        <TextBlock Text="1. Link of the Video" Style="{StaticResource FormLabelStyle}"/>
+                        <TextBox Text="{Binding LinkOfVideo, UpdateSourceTrigger=PropertyChanged}"
+                                 Style="{StaticResource ModernTextBoxStyle}"
+                                 Margin="0,0,0,4"/>
+                        <TextBlock Text="{Binding LinkError}"
+                                   Style="{StaticResource ErrorTextStyle}"
+                                   Visibility="{Binding LinkError, Converter={StaticResource StringToVisibility}}"
+                                   Margin="0,0,0,12"/>
+                        <TextBlock Text="" Margin="0,0,0,12"
+                                   Visibility="{Binding LinkError, Converter={StaticResource StringToVisibility},
+                                               ConverterParameter=Invert}"/>
+
+                        <!-- 2. Platform -->
+                        <TextBlock Text="2. Platform" Style="{StaticResource FormLabelStyle}"/>
+                        <TextBox Text="{Binding Platform, UpdateSourceTrigger=PropertyChanged}"
+                                 Style="{StaticResource ModernTextBoxStyle}"
+                                 Margin="0,0,0,4"/>
+                        <TextBlock Text="{Binding PlatformError}"
+                                   Style="{StaticResource ErrorTextStyle}"
+                                   Visibility="{Binding PlatformError, Converter={StaticResource StringToVisibility}}"
+                                   Margin="0,0,0,12"/>
+                        <TextBlock Text="" Margin="0,0,0,12"
+                                   Visibility="{Binding PlatformError, Converter={StaticResource StringToVisibility},
+                                               ConverterParameter=Invert}"/>
+
+                        <!-- 3. Name of the Channel -->
+                        <TextBlock Text="3. Name of the Channel" Style="{StaticResource FormLabelStyle}"/>
+                        <TextBox Text="{Binding NameOfChannel, UpdateSourceTrigger=PropertyChanged}"
+                                 Style="{StaticResource ModernTextBoxStyle}"
+                                 Margin="0,0,0,4"/>
+                        <TextBlock Text="{Binding ChannelError}"
+                                   Style="{StaticResource ErrorTextStyle}"
+                                   Visibility="{Binding ChannelError, Converter={StaticResource StringToVisibility}}"
+                                   Margin="0,0,0,12"/>
+                        <TextBlock Text="" Margin="0,0,0,12"
+                                   Visibility="{Binding ChannelError, Converter={StaticResource StringToVisibility},
+                                               ConverterParameter=Invert}"/>
+
+                        <!-- 4. Purpose -->
+                        <TextBlock Text="4. Purpose" Style="{StaticResource FormLabelStyle}"/>
+                        <TextBox Text="{Binding Purpose, UpdateSourceTrigger=PropertyChanged}"
+                                 Style="{StaticResource ModernTextBoxStyle}"
+                                 Margin="0,0,0,4"/>
+                        <TextBlock Text="{Binding PurposeError}"
+                                   Style="{StaticResource ErrorTextStyle}"
+                                   Visibility="{Binding PurposeError, Converter={StaticResource StringToVisibility}}"
+                                   Margin="0,0,0,12"/>
+                        <TextBlock Text="" Margin="0,0,0,12"
+                                   Visibility="{Binding PurposeError, Converter={StaticResource StringToVisibility},
+                                               ConverterParameter=Invert}"/>
+
+                        <!-- 5. Category -->
+                        <TextBlock Text="5. Category" Style="{StaticResource FormLabelStyle}"/>
+                        <TextBox Text="{Binding Category, UpdateSourceTrigger=PropertyChanged}"
+                                 Style="{StaticResource ModernTextBoxStyle}"
+                                 Margin="0,0,0,4"/>
+                        <TextBlock Text="{Binding CategoryError}"
+                                   Style="{StaticResource ErrorTextStyle}"
+                                   Visibility="{Binding CategoryError, Converter={StaticResource StringToVisibility}}"
+                                   Margin="0,0,0,20"/>
+                        <TextBlock Text="" Margin="0,0,0,20"
+                                   Visibility="{Binding CategoryError, Converter={StaticResource StringToVisibility},
+                                               ConverterParameter=Invert}"/>
+
+                        <!-- Save button -->
+                        <Button Command="{Binding SaveCommand}"
+                                IsEnabled="{Binding IsSaving, Converter={StaticResource BoolToVisibility},
+                                            ConverterParameter=Invert}"
+                                HorizontalAlignment="Stretch"
+                                Style="{StaticResource PrimaryButtonStyle}">
+                            <TextBlock Text="{Binding IsSaving,
+                                              Converter={StaticResource BoolToString},
+                                              ConverterParameter=Saving...|💾  Save Link}"
+                                       FontSize="15" FontWeight="SemiBold"/>
+                        </Button>
+
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+
+</UserControl>

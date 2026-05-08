@@ -1,0 +1,97 @@
+<UserControl x:Class="VideoLinkSaver.Views.DataLocationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid Background="{DynamicResource BackgroundGradientBrush}">
+        <Border HorizontalAlignment="Center" VerticalAlignment="Center"
+                Background="{DynamicResource SurfaceBrush}"
+                BorderBrush="{DynamicResource CardBorderBrush}"
+                BorderThickness="1"
+                CornerRadius="22"
+                Padding="48,40">
+            <Border.Effect>
+                <DropShadowEffect Color="#6C63FF" BlurRadius="32" ShadowDepth="0" Opacity="0.1"/>
+            </Border.Effect>
+
+            <StackPanel Width="460">
+                <!-- Header row -->
+                <Grid Margin="0,0,0,28">
+                    <Button HorizontalAlignment="Left"
+                            Content="← Back"
+                            Style="{StaticResource SecondaryButtonStyle}"
+                            Command="{Binding BackCommand}"
+                            Padding="14,8" FontSize="13"/>
+                    <TextBlock Text="Data Storage"
+                               FontSize="22" FontWeight="Bold"
+                               Foreground="{DynamicResource TextPrimaryBrush}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                </Grid>
+
+                <!-- Icon -->
+                <Border Background="{DynamicResource AccentGradientBrush}"
+                        CornerRadius="18"
+                        Width="60" Height="60"
+                        HorizontalAlignment="Center"
+                        Margin="0,0,0,16">
+                    <TextBlock Text="📂" FontSize="28"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+
+                <!-- File path display -->
+                <TextBlock Text="Your data is saved at:"
+                           FontSize="14"
+                           Foreground="{DynamicResource TextSecondaryBrush}"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,8"/>
+
+                <Border Background="{DynamicResource AccentLightBrush}"
+                        CornerRadius="10"
+                        Padding="16,12"
+                        Margin="0,0,0,24">
+                    <TextBlock Text="{Binding FilePath}"
+                               FontSize="13"
+                               Foreground="{DynamicResource AccentBrush}"
+                               FontFamily="Consolas, Courier New"
+                               TextWrapping="Wrap"
+                               HorizontalAlignment="Center"
+                               TextAlignment="Center"/>
+                </Border>
+
+                <!-- Open Folder button -->
+                <Button Content="📂  Open the xl file location"
+                        Style="{StaticResource PrimaryButtonStyle}"
+                        Command="{Binding OpenFolderCommand}"
+                        HorizontalAlignment="Stretch"
+                        Margin="0,0,0,28"/>
+
+                <!-- Warning box -->
+                <Border Background="#FEF3C7"
+                        BorderBrush="#FDE68A"
+                        BorderThickness="1"
+                        CornerRadius="12"
+                        Padding="18,14">
+                    <StackPanel>
+                        <TextBlock Text="⚠️  Important Warning"
+                                   FontSize="14" FontWeight="Bold"
+                                   Foreground="#92400E"
+                                   Margin="0,0,0,8"
+                                   HorizontalAlignment="Center"/>
+                        <TextBlock TextWrapping="Wrap"
+                                   FontSize="13"
+                                   Foreground="#78350F"
+                                   TextAlignment="Center"
+                                   FontWeight="SemiBold">
+                            Do not delete the xl file or change its location and name otherwise the app would
+                            fail to save your data or you can lose your data permanently.
+                            You can take the backup of that xl file on your cloud storage and make a copy
+                            of the xl file and save it in your external storage device for your data safety
+                            as you want.
+                        </TextBlock>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+    </Grid>
+
+</UserControl>
