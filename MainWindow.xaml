@@ -1,0 +1,72 @@
+<Window x:Class="VideoLinkSaver.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:VideoLinkSaver.ViewModels"
+        xmlns:views="clr-namespace:VideoLinkSaver.Views"
+        Title="Video Link Saver"
+        Height="700" Width="960"
+        MinHeight="600" MinWidth="800"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource BackgroundGradientBrush}">
+
+    <Window.Resources>
+        <!-- Map ViewModels to Views (DataTemplates) -->
+        <DataTemplate DataType="{x:Type vm:HomeViewModel}">
+            <views:HomeView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:CreateLinkViewModel}">
+            <views:CreateLinkView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:SearchViewModel}">
+            <views:SearchView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:DataLocationViewModel}">
+            <views:DataLocationView/>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <!-- App bar -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Top bar -->
+        <Border Grid.Row="0"
+                Background="{DynamicResource SurfaceBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="0,0,0,1">
+            <Grid Margin="24,0">
+                <!-- App name / logo -->
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Border Background="{DynamicResource AccentGradientBrush}"
+                            CornerRadius="10"
+                            Width="36" Height="36"
+                            Margin="0,0,12,0">
+                        <TextBlock Text="▶" Foreground="White" FontSize="16"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Text="Video Link Saver"
+                               FontSize="18" FontWeight="Bold"
+                               Foreground="{DynamicResource TextPrimaryBrush}"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- Theme toggle button (top-right) -->
+                <Button HorizontalAlignment="Right"
+                        Style="{StaticResource ThemeToggleStyle}"
+                        Command="{Binding ToggleThemeCommand}"
+                        Content="{DynamicResource ThemeToggleIcon}"
+                        ToolTip="Toggle light / dark mode"/>
+            </Grid>
+        </Border>
+
+        <!-- Content area — ContentControl renders the correct View automatically
+             via the DataTemplate mappings declared above -->
+        <ContentControl Grid.Row="1"
+                        Content="{Binding CurrentView}"
+                        Margin="0"/>
+    </Grid>
+
+</Window>

@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>VideoLinkSaver</AssemblyName>
+    <RootNamespace>VideoLinkSaver</RootNamespace>
+    <Version>1.0.0</Version>
+    <Authors>VideoLinkSaver</Authors>
+    <Description>Offline local storage and search for YouTube and Instagram video links.</Description>
+    <Platforms>x64;x86;AnyCPU</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- ClosedXML: MIT licensed Excel library -->
+    <PackageReference Include="ClosedXML" Version="0.102.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\**\*" />
+  </ItemGroup>
+
+</Project>

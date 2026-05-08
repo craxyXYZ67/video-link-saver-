@@ -1,0 +1,224 @@
+<Application x:Class="VideoLinkSaver.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="clr-namespace:VideoLinkSaver.Converters"
+             StartupUri="MainWindow.xaml">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- Default theme (overwritten at runtime by ThemeService) -->
+                <ResourceDictionary Source="pack://application:,,,/Themes/LightTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- Global converters -->
+            <converters:BoolToVisibilityConverter x:Key="BoolToVisibility"/>
+            <converters:BoolToVisibilityConverter x:Key="InvertBoolToVisibility"
+                                                   x:Shared="True"/>
+            <converters:StringToVisibilityConverter x:Key="StringToVisibility"/>
+            <converters:BoolToStringConverter x:Key="BoolToString"/>
+
+            <!-- ============================================================
+                 GLOBAL STYLES
+                 ============================================================ -->
+
+            <!-- Primary button style -->
+            <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+                <Setter Property="Background" Value="{DynamicResource AccentGradientBrush}"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="Padding" Value="28,14"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="12"
+                                    Padding="{TemplateBinding Padding}"
+                                    SnapsToDevicePixels="True">
+                                <Border.Effect>
+                                    <DropShadowEffect Color="#6C63FF" BlurRadius="16" ShadowDepth="0" Opacity="0.35"/>
+                                </Border.Effect>
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="RenderTransform">
+                                        <Setter.Value>
+                                            <ScaleTransform ScaleX="1.03" ScaleY="1.03"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter TargetName="border" Property="RenderTransformOrigin" Value="0.5,0.5"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="border" Property="RenderTransform">
+                                        <Setter.Value>
+                                            <ScaleTransform ScaleX="0.97" ScaleY="0.97"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter TargetName="border" Property="RenderTransformOrigin" Value="0.5,0.5"/>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter TargetName="border" Property="Opacity" Value="0.5"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!-- Secondary / ghost button style -->
+            <Style x:Key="SecondaryButtonStyle" TargetType="Button">
+                <Setter Property="Background" Value="{DynamicResource ButtonSecondaryBgBrush}"/>
+                <Setter Property="Foreground" Value="{DynamicResource AccentBrush}"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="Padding" Value="20,12"/>
+                <Setter Property="BorderThickness" Value="2"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource AccentBrush}"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="10"
+                                    Padding="{TemplateBinding Padding}"
+                                    SnapsToDevicePixels="True">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Background"
+                                            Value="{DynamicResource AccentBrush}"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="border" Property="RenderTransform">
+                                        <Setter.Value><ScaleTransform ScaleX="0.97" ScaleY="0.97"/></Setter.Value>
+                                    </Setter>
+                                    <Setter TargetName="border" Property="RenderTransformOrigin" Value="0.5,0.5"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!-- Modern TextBox style -->
+            <Style x:Key="ModernTextBoxStyle" TargetType="TextBox">
+                <Setter Property="Background" Value="{DynamicResource SurfaceBrush}"/>
+                <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource InputBorderBrush}"/>
+                <Setter Property="BorderThickness" Value="2"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Padding" Value="12,10"/>
+                <Setter Property="CaretBrush" Value="{DynamicResource AccentBrush}"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="TextBox">
+                            <Border x:Name="border"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="10"
+                                    SnapsToDevicePixels="True">
+                                <ScrollViewer x:Name="PART_ContentHost"
+                                              Padding="{TemplateBinding Padding}"
+                                              VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsFocused" Value="True">
+                                    <Setter TargetName="border" Property="BorderBrush"
+                                            Value="{DynamicResource InputFocusBrush}"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!-- Label style -->
+            <Style x:Key="FormLabelStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}"/>
+                <Setter Property="FontSize" Value="13"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="Margin" Value="0,0,0,6"/>
+            </Style>
+
+            <!-- Error text style -->
+            <Style x:Key="ErrorTextStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{DynamicResource ErrorBrush}"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="Margin" Value="4,4,0,0"/>
+            </Style>
+
+            <!-- Card style (for search results) -->
+            <Style x:Key="CardBorderStyle" TargetType="Border">
+                <Setter Property="Background" Value="{DynamicResource SurfaceBrush}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource CardBorderBrush}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="CornerRadius" Value="14"/>
+                <Setter Property="Padding" Value="18,14"/>
+                <Setter Property="Margin" Value="0,0,0,12"/>
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect BlurRadius="12" ShadowDepth="2"
+                                          Color="#6C63FF" Opacity="0.08"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!-- Small pill/tag text block -->
+            <Style x:Key="TagStyle" TargetType="Border">
+                <Setter Property="CornerRadius" Value="20"/>
+                <Setter Property="Padding" Value="10,4"/>
+                <Setter Property="Margin" Value="0,0,6,0"/>
+            </Style>
+
+            <!-- Theme toggle button style -->
+            <Style x:Key="ThemeToggleStyle" TargetType="Button">
+                <Setter Property="Background" Value="{DynamicResource AccentLightBrush}"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Width" Value="44"/>
+                <Setter Property="Height" Value="44"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="22"
+                                    SnapsToDevicePixels="True">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Background"
+                                            Value="{DynamicResource AccentBrush}"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="border" Property="RenderTransform">
+                                        <Setter.Value><ScaleTransform ScaleX="0.9" ScaleY="0.9"/></Setter.Value>
+                                    </Setter>
+                                    <Setter TargetName="border" Property="RenderTransformOrigin" Value="0.5,0.5"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+
+</Application>
